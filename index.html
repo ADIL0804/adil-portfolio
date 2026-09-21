@@ -1,3145 +1,1320 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio personnel d'Adil : développement web, e-commerce, design digital et projets avec HTML, CSS, JavaScript et IA.">
+  <meta name="theme-color" content="#050816">
+  <meta name="robots" content="index,follow">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <link rel="canonical" href="https://adil0804.github.io/adil-portfolio/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <meta
-    name="description"
-    content="Portfolio personnel d'Adil - Web, design, e-commerce et projets digitaux."
-  >
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ADIL | Portfolio">
+  <meta property="og:description" content="Développement web, e-commerce, design digital et projets d'Adil.">
+  <meta property="og:url" content="https://adil0804.github.io/adil-portfolio/">
+  <meta property="og:site_name" content="ADIL Portfolio">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ADIL | Portfolio">
+  <meta name="twitter:description" content="Développement web, e-commerce, design digital et projets d'Adil.">
 
   <title>ADIL | Portfolio</title>
 
-
   <style>
-
-    /* =========================================
-       RESET
-    ========================================= */
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-
     html {
       scroll-behavior: smooth;
     }
 
-
     :root {
-
       --bg: #050816;
-
       --bg-secondary: #0b1020;
-
       --text: #ffffff;
-
       --text-secondary: #cbd5e1;
-
       --muted: #94a3b8;
-
       --accent: #ff4fa3;
-
       --accent-secondary: #7c3aed;
-
-      --card: rgba(255,255,255,0.05);
-
-      --border: rgba(255,255,255,0.09);
-
-      --header: rgba(5,8,22,0.80);
-
+      --card: rgba(255, 255, 255, 0.055);
+      --border: rgba(255, 255, 255, 0.09);
+      --header: rgba(5, 8, 22, 0.82);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
     }
-
-
-    body {
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      background:
-
-        radial-gradient(
-          circle at 15% 15%,
-          rgba(255,79,163,0.16),
-          transparent 30%
-        ),
-
-        radial-gradient(
-          circle at 85% 70%,
-          rgba(124,58,237,0.16),
-          transparent 35%
-        ),
-
-        var(--bg);
-
-      color: var(--text);
-
-      overflow-x: hidden;
-
-      transition:
-        background 0.4s,
-        color 0.4s;
-
-    }
-
 
     body.light {
-
       --bg: #f8fafc;
-
       --bg-secondary: #ffffff;
-
       --text: #111827;
-
       --text-secondary: #475569;
-
       --muted: #64748b;
-
-      --card: rgba(255,255,255,0.92);
-
-      --border: rgba(15,23,42,0.10);
-
-      --header: rgba(255,255,255,0.88);
-
+      --card: rgba(255, 255, 255, 0.93);
+      --border: rgba(15, 23, 42, 0.10);
+      --header: rgba(255, 255, 255, 0.90);
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
     }
 
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255, 79, 163, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 70%, rgba(124, 58, 237, 0.16), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
 
-    /* =========================================
-       SCROLL PROGRESS
-    ========================================= */
+    a,
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(255, 79, 163, 0.45);
+      outline-offset: 3px;
+    }
 
     #progressBar {
-
       position: fixed;
-
       top: 0;
       left: 0;
-
       width: 0;
-
       height: 3px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--accent),
-          var(--accent-secondary)
-        );
-
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
       z-index: 9999;
-
     }
-
-
-    /* =========================================
-       HEADER
-    ========================================= */
 
     header {
-
       position: fixed;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-
+      inset: 0 0 auto 0;
       z-index: 1000;
-
       background: var(--header);
-
       backdrop-filter: blur(18px);
-
-      border-bottom:
-        1px solid var(--border);
-
+      border-bottom: 1px solid var(--border);
     }
-
 
     .navbar {
-
-      max-width: 1200px;
-
-      margin: auto;
-
+      max-width: 1180px;
       min-height: 78px;
-
-      padding: 0 25px;
-
+      margin: auto;
+      padding: 0 24px;
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 20px;
-
     }
-
 
     .logo {
-
-      font-size: 28px;
-
-      font-weight: 900;
-
-      letter-spacing: 3px;
-
+      border: 0;
+      background: transparent;
       color: var(--accent);
-
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 3px;
       cursor: pointer;
-
-      text-shadow:
-        0 0 20px
-        rgba(255,79,163,0.45);
-
+      text-shadow: 0 0 22px rgba(255, 79, 163, 0.42);
     }
 
+    .nav-right,
+    nav {
+      display: flex;
+      align-items: center;
+    }
 
     .nav-right {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 15px;
-
+      gap: 14px;
     }
-
 
     nav {
-
-      display: flex;
-
-      gap: 25px;
-
-      align-items: center;
-
+      gap: 24px;
     }
-
 
     nav a {
-
       position: relative;
-
       color: var(--text);
-
       text-decoration: none;
-
-      font-size: 15px;
-
-      padding: 8px 0;
-
-      transition: 0.3s;
-
+      font-size: 14px;
+      font-weight: 600;
+      padding: 9px 0;
+      transition: 0.25s ease;
     }
-
 
     nav a::after {
-
       content: "";
-
       position: absolute;
-
       left: 0;
       bottom: 0;
-
       width: 0;
-
       height: 2px;
-
       background: var(--accent);
-
-      transition: 0.3s;
-
+      transition: width 0.25s ease;
     }
-
 
     nav a:hover,
     nav a.active {
-
       color: var(--accent);
-
     }
-
 
     nav a:hover::after,
     nav a.active::after {
-
       width: 100%;
-
     }
-
 
     .icon-btn {
-
       width: 44px;
-
       height: 44px;
-
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--border);
       border-radius: 50%;
-
-      border:
-        1px solid var(--border);
-
       background: var(--card);
-
       color: var(--text);
-
-      font-size: 19px;
-
       cursor: pointer;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      transition: 0.3s;
-
+      transition: 0.25s ease;
     }
-
 
     .icon-btn:hover {
-
-      transform:
-        translateY(-3px)
-        scale(1.05);
-
+      transform: translateY(-3px);
       border-color: var(--accent);
-
     }
-
 
     #menuBtn {
       display: none;
     }
 
-
-    /* =========================================
-       HERO
-    ========================================= */
-
     .hero {
-
       min-height: 100vh;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
+      display: grid;
+      place-items: center;
       text-align: center;
-
-      padding:
-        130px 20px
-        70px;
-
+      padding: 135px 20px 80px;
     }
-
 
     .hero-content {
-
-      max-width: 950px;
-
+      width: min(940px, 100%);
     }
-
 
     .avatar {
-
-      width: 90px;
-
-      height: 90px;
-
-      margin:
-        0 auto
-        25px;
-
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
       border-radius: 50%;
-
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      font-size: 35px;
-
-      font-weight: bold;
-
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
       color: white;
-
-      background:
-
-        linear-gradient(
-          135deg,
-          var(--accent),
-          var(--accent-secondary)
-        );
-
-      box-shadow:
-        0 15px 45px
-        rgba(255,79,163,0.30);
-
+      font-size: 36px;
+      font-weight: 900;
+      box-shadow: 0 16px 48px rgba(255, 79, 163, 0.30);
+      border: 4px solid rgba(255, 255, 255, 0.08);
     }
 
+    .mini-title,
+    .section-title span {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
 
     .mini-title {
-
-      color: var(--accent);
-
-      font-size: 14px;
-
-      font-weight: bold;
-
-      letter-spacing: 4px;
-
       margin-bottom: 20px;
-
     }
-
 
     .hero h1 {
-
-      font-size:
-        clamp(
-          50px,
-          8vw,
-          95px
-        );
-
+      font-size: clamp(50px, 8vw, 94px);
       line-height: 1;
-
-      margin-bottom: 25px;
-
+      letter-spacing: -3px;
+      margin-bottom: 24px;
     }
-
 
     .hero h1 span {
-
       color: var(--accent);
-
-      text-shadow:
-        0 0 40px
-        rgba(255,79,163,0.35);
-
+      text-shadow: 0 0 40px rgba(255, 79, 163, 0.34);
     }
-
 
     .hero-description {
-
-      max-width: 720px;
-
+      max-width: 730px;
       margin: auto;
-
       color: var(--text-secondary);
-
-      font-size: 19px;
-
+      font-size: 18px;
       line-height: 1.8;
-
     }
-
-
-    /* =========================================
-       TYPING
-    ========================================= */
 
     .typing-box {
-
+      min-height: 34px;
       margin: 28px 0;
-
-      min-height: 35px;
-
-      font-size: 24px;
-
-      font-weight: bold;
-
+      font-size: 23px;
+      font-weight: 800;
     }
-
 
     #typing {
-
       color: var(--accent);
-
-      border-right:
-        2px solid var(--accent);
-
+      border-right: 2px solid var(--accent);
       padding-right: 5px;
-
     }
 
-
-    /* =========================================
-       BUTTONS
-    ========================================= */
+    .hero-buttons,
+    .hero-socials,
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
     .hero-buttons {
-
-      margin-top: 35px;
-
-      display: flex;
-
-      justify-content: center;
-
-      gap: 15px;
-
-      flex-wrap: wrap;
-
+      margin-top: 34px;
     }
-
-
-    .btn {
-
-      display: inline-block;
-
-      padding:
-        15px 28px;
-
-      border-radius: 12px;
-
-      border: none;
-
-      text-decoration: none;
-
-      font-weight: bold;
-
-      font-size: 15px;
-
-      cursor: pointer;
-
-      transition: 0.3s;
-
-    }
-
-
-    .btn-primary {
-
-      background: var(--accent);
-
-      color: white;
-
-      box-shadow:
-        0 12px 35px
-        rgba(255,79,163,0.30);
-
-    }
-
-
-    .btn-primary:hover {
-
-      transform:
-        translateY(-5px);
-
-      box-shadow:
-        0 18px 45px
-        rgba(255,79,163,0.45);
-
-    }
-
-
-    .btn-secondary {
-
-      color: var(--text);
-
-      border:
-        1px solid var(--border);
-
-      background: var(--card);
-
-    }
-
-
-    .btn-secondary:hover {
-
-      color: var(--accent);
-
-      border-color: var(--accent);
-
-      transform:
-        translateY(-5px);
-
-    }
-
 
     .hero-socials {
-
-      margin-top: 25px;
-
-      display: flex;
-
-      justify-content: center;
-
-      gap: 12px;
-
-      flex-wrap: wrap;
-
+      margin-top: 22px;
     }
 
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 13px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 12px 35px rgba(255, 79, 163, 0.30);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(255, 79, 163, 0.42);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .btn-secondary:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
 
     .social-mini {
-
-      padding:
-        10px 18px;
-
-      border-radius: 30px;
-
-      text-decoration: none;
-
-      color: var(--text-secondary);
-
-      border:
-        1px solid var(--border);
-
+      padding: 10px 17px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
       background: var(--card);
-
-      font-size: 14px;
-
-      transition: 0.3s;
-
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
     }
-
 
     .social-mini:hover {
-
+      transform: translateY(-3px);
       color: var(--accent);
-
       border-color: var(--accent);
-
-      transform:
-        translateY(-3px);
-
     }
-
-
-    /* =========================================
-       GENERAL
-    ========================================= */
 
     section {
-
-      padding:
-        105px
-        25px;
-
+      padding: 102px 24px;
+      scroll-margin-top: 75px;
     }
-
 
     .container {
-
-      max-width: 1200px;
-
+      max-width: 1180px;
       margin: auto;
-
     }
-
 
     .section-title {
-
       text-align: center;
-
-      margin-bottom: 60px;
-
+      margin-bottom: 58px;
     }
-
-
-    .section-title span {
-
-      color: var(--accent);
-
-      font-size: 13px;
-
-      font-weight: bold;
-
-      letter-spacing: 4px;
-
-    }
-
 
     .section-title h2 {
-
       margin-top: 10px;
-
-      font-size: 42px;
-
+      font-size: clamp(34px, 5vw, 44px);
+      letter-spacing: -1.4px;
     }
-
 
     .glass {
-
       background: var(--card);
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       backdrop-filter: blur(15px);
-
       border-radius: 22px;
-
-      transition: 0.35s;
-
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
     }
-
-
-    /* =========================================
-       ABOUT
-    ========================================= */
 
     .about-grid {
-
       display: grid;
-
-      grid-template-columns:
-        1.1fr
-        0.9fr;
-
-      gap: 40px;
-
-      align-items: center;
-
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: stretch;
     }
-
 
     .about-box {
-
-      padding: 40px;
-
+      padding: 38px;
     }
 
-
-    .about-box:hover {
-
-      transform:
-        translateY(-5px);
-
-      border-color:
-        rgba(255,79,163,0.5);
-
+    .about-box:hover,
+    .info-card:hover,
+    .skill-card:hover,
+    .project:hover,
+    .social-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(255, 79, 163, 0.52);
     }
 
+    .about-box h3,
+    .skill-card h3,
+    .project-content h3,
+    .social-card h3 {
+      color: var(--accent);
+    }
 
     .about-box h3 {
-
-      color: var(--accent);
-
-      font-size: 28px;
-
-      margin-bottom: 20px;
-
+      font-size: 27px;
+      margin-bottom: 18px;
     }
 
-
-    .about-box p {
-
+    .about-box p,
+    .skill-card p,
+    .project-content p,
+    .social-card p,
+    .contact-intro,
+    #modalDescription {
       color: var(--text-secondary);
-
-      line-height: 1.9;
-
+      line-height: 1.75;
     }
-
 
     .about-info {
-
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 20px;
-
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
-
 
     .info-card {
-
-      padding: 28px;
-
+      min-height: 145px;
+      display: grid;
+      place-content: center;
       text-align: center;
-
+      padding: 24px;
     }
-
-
-    .info-card:hover {
-
-      transform:
-        translateY(-7px);
-
-      border-color: var(--accent);
-
-    }
-
 
     .info-card h4 {
-
       color: var(--accent);
-
-      font-size: 28px;
-
-      margin-bottom: 8px;
-
+      font-size: 26px;
+      margin-bottom: 7px;
     }
-
 
     .info-card p {
-
       color: var(--muted);
-
+      font-size: 14px;
     }
 
-
-    /* =========================================
-       SKILLS
-    ========================================= */
-
-    .skills-grid {
-
+    .skills-grid,
+    .projects-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 25px;
-
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
-
 
     .skill-card {
-
-      padding: 35px;
-
+      padding: 32px;
     }
-
-
-    .skill-card:hover {
-
-      transform:
-        translateY(-10px);
-
-      border-color:
-        rgba(255,79,163,0.5);
-
-    }
-
 
     .skill-icon {
-
-      font-size: 42px;
-
-      margin-bottom: 20px;
-
+      font-size: 40px;
+      margin-bottom: 18px;
     }
-
 
     .skill-card h3 {
-
-      color: var(--accent);
-
-      margin-bottom: 12px;
-
-      font-size: 23px;
-
+      margin-bottom: 10px;
+      font-size: 22px;
     }
-
-
-    .skill-card p {
-
-      color: var(--text-secondary);
-
-      line-height: 1.7;
-
-    }
-
 
     .skill-level {
-
-      margin-top: 25px;
-
+      margin-top: 22px;
     }
 
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
 
     .skill-bar {
-
       width: 100%;
-
       height: 7px;
-
-      border-radius: 20px;
-
       overflow: hidden;
-
-      background:
-        rgba(148,163,184,0.20);
-
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.20);
     }
-
 
     .skill-fill {
-
       width: 0;
-
       height: 100%;
-
-      border-radius: 20px;
-
-      background:
-
-        linear-gradient(
-          90deg,
-          var(--accent),
-          var(--accent-secondary)
-        );
-
-      transition:
-        width 1.4s ease;
-
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      transition: width 1.35s ease;
     }
-
-
-    /* =========================================
-       PROJECTS
-    ========================================= */
-
-    .projects-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 25px;
-
-    }
-
 
     .project {
-
       overflow: hidden;
-
       cursor: pointer;
-
     }
-
-
-    .project:hover {
-
-      transform:
-        translateY(-10px);
-
-      border-color: var(--accent);
-
-      box-shadow:
-        0 20px 50px
-        rgba(255,79,163,0.12);
-
-    }
-
 
     .project-image {
-
-      height: 210px;
-
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      font-size: 65px;
-
-      background:
-
-        linear-gradient(
-          135deg,
-          rgba(255,79,163,0.25),
-          rgba(124,58,237,0.25)
-        );
-
+      height: 205px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255, 79, 163, 0.25), rgba(124, 58, 237, 0.25));
+      font-size: 62px;
     }
-
 
     .project-content {
-
-      padding: 25px;
-
+      padding: 24px;
     }
-
 
     .project-content h3 {
-
-      color: var(--accent);
-
-      margin-bottom: 12px;
-
+      margin-bottom: 10px;
     }
-
-
-    .project-content p {
-
-      color: var(--text-secondary);
-
-      line-height: 1.6;
-
-    }
-
 
     .project-link {
-
       display: inline-block;
-
-      margin-top: 18px;
-
+      margin-top: 16px;
       color: var(--accent);
-
-      font-weight: bold;
-
-      font-size: 14px;
-
+      font-weight: 800;
+      font-size: 13px;
     }
-
-
-    /* =========================================
-       CONTACT SOCIAL CARDS
-    ========================================= */
 
     .social-grid {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(2,1fr);
-
-      gap: 25px;
-
-      max-width: 850px;
-
-      margin:
-        0 auto
-        40px;
-
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 980px;
+      margin: 0 auto 36px;
     }
-
 
     .social-card {
-
-      padding: 35px;
-
+      padding: 30px;
       text-align: center;
-
       text-decoration: none;
-
       color: var(--text);
-
-      cursor: pointer;
-
     }
-
-
-    .social-card:hover {
-
-      transform:
-        translateY(-8px);
-
-      border-color: var(--accent);
-
-    }
-
 
     .social-icon {
-
-      font-size: 45px;
-
-      margin-bottom: 15px;
-
+      font-size: 42px;
+      margin-bottom: 12px;
     }
-
 
     .social-card h3 {
-
-      color: var(--accent);
-
-      margin-bottom: 8px;
-
+      margin-bottom: 7px;
     }
-
-
-    .social-card p {
-
-      color: var(--text-secondary);
-
-      font-size: 14px;
-
-    }
-
-
-    /* =========================================
-       CONTACT FORM
-    ========================================= */
 
     .contact-box {
-
-      max-width: 850px;
-
+      max-width: 860px;
       margin: auto;
-
-      padding: 40px;
-
+      padding: 38px;
     }
 
+    .contact-intro {
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
     .contact-form {
-
       display: grid;
-
-      gap: 15px;
-
+      gap: 14px;
     }
-
 
     .contact-form label {
-
       color: var(--text-secondary);
-
-      font-size: 14px;
-
+      font-size: 13px;
+      font-weight: 700;
     }
-
 
     .contact-form input,
     .contact-form textarea {
-
       width: 100%;
-
-      padding: 15px;
-
+      padding: 14px 15px;
+      border: 1px solid var(--border);
       border-radius: 12px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,0.04);
-
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text);
-
       outline: none;
-
-      font-family: inherit;
-
-      transition: 0.3s;
-
+      transition: 0.25s ease;
     }
-
 
     .contact-form input:focus,
     .contact-form textarea:focus {
-
       border-color: var(--accent);
-
-      box-shadow:
-        0 0 0 3px
-        rgba(255,79,163,0.10);
-
+      box-shadow: 0 0 0 3px rgba(255, 79, 163, 0.10);
     }
-
 
     .contact-form textarea {
-
-      min-height: 140px;
-
+      min-height: 135px;
       resize: vertical;
-
     }
-
-
-    /* =========================================
-       PROJECT MODAL
-    ========================================= */
 
     .modal {
-
       position: fixed;
-
       inset: 0;
-
       z-index: 3000;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
+      display: grid;
+      place-items: center;
       padding: 20px;
-
-      background:
-        rgba(0,0,0,0.78);
-
+      background: rgba(0, 0, 0, 0.78);
       opacity: 0;
-
       visibility: hidden;
-
-      transition: 0.3s;
-
+      transition: 0.25s ease;
     }
-
 
     .modal.show {
-
       opacity: 1;
-
       visibility: visible;
-
     }
-
 
     .modal-box {
-
       position: relative;
-
-      width: 100%;
-
-      max-width: 600px;
-
-      padding: 35px;
-
-      border-radius: 25px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        var(--bg-secondary);
-
+      width: min(620px, 100%);
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--bg-secondary);
       color: var(--text);
-
-      transform:
-        translateY(30px)
-        scale(0.96);
-
-      transition: 0.3s;
-
+      transform: translateY(24px) scale(0.97);
+      transition: 0.25s ease;
+      box-shadow: var(--shadow);
     }
-
 
     .modal.show .modal-box {
-
-      transform:
-        translateY(0)
-        scale(1);
-
+      transform: translateY(0) scale(1);
     }
-
 
     #modalIcon {
-
-      font-size: 60px;
-
-      margin-bottom: 20px;
-
+      font-size: 58px;
+      margin-bottom: 18px;
     }
-
 
     #modalTitle {
-
       color: var(--accent);
-
-      margin-bottom: 15px;
-
+      margin-bottom: 13px;
+      font-size: 28px;
     }
-
-
-    #modalDescription {
-
-      color: var(--text-secondary);
-
-      line-height: 1.8;
-
-    }
-
 
     #modalTech {
-
-      margin-top: 20px;
-
+      margin-top: 18px;
       color: var(--accent);
-
-      font-weight: bold;
-
+      font-weight: 800;
+      font-size: 14px;
     }
 
+    .modal-actions {
+      justify-content: flex-start;
+      margin-top: 24px;
+    }
 
     #closeModal {
-
       position: absolute;
-
-      right: 18px;
-
-      top: 18px;
-
+      right: 17px;
+      top: 17px;
       width: 40px;
-
       height: 40px;
-
-      border: none;
-
+      border: 0;
       border-radius: 50%;
-
-      cursor: pointer;
-
-      background:
-        rgba(255,255,255,0.08);
-
+      background: rgba(255, 255, 255, 0.08);
       color: var(--text);
-
       font-size: 20px;
-
+      cursor: pointer;
     }
-
-
-    /* =========================================
-       FOOTER
-    ========================================= */
 
     footer {
-
-      padding: 35px 20px;
-
+      padding: 34px 20px;
       text-align: center;
-
-      border-top:
-        1px solid var(--border);
-
+      border-top: 1px solid var(--border);
       color: var(--muted);
-
     }
 
-
-    footer span {
-
+    footer strong {
       color: var(--accent);
-
     }
-
 
     .footer-socials {
-
-      margin-top: 15px;
-
+      margin-top: 13px;
       display: flex;
-
       justify-content: center;
-
-      gap: 20px;
-
+      gap: 18px;
+      flex-wrap: wrap;
     }
-
 
     .footer-socials a {
-
       color: var(--text-secondary);
-
       text-decoration: none;
-
-      transition: 0.3s;
-
+      font-size: 13px;
+      font-weight: 700;
     }
-
 
     .footer-socials a:hover {
-
       color: var(--accent);
-
     }
-
-
-    /* =========================================
-       REVEAL
-    ========================================= */
 
     .reveal {
-
       opacity: 0;
-
-      transform:
-        translateY(45px);
-
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-
+      transform: translateY(40px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
     }
-
 
     .reveal.show {
-
       opacity: 1;
-
-      transform:
-        translateY(0);
-
+      transform: translateY(0);
     }
-
-
-    /* =========================================
-       BACK TO TOP
-    ========================================= */
 
     #topBtn {
-
       position: fixed;
-
       right: 22px;
-
       bottom: 22px;
-
       width: 50px;
-
       height: 50px;
-
-      border: none;
-
+      border: 0;
       border-radius: 50%;
-
       background: var(--accent);
-
       color: white;
-
+      font-size: 20px;
       cursor: pointer;
-
-      font-size: 21px;
-
-      z-index: 1000;
-
+      z-index: 999;
       opacity: 0;
-
       visibility: hidden;
-
-      transform:
-        translateY(20px);
-
-      transition: 0.3s;
-
-      box-shadow:
-        0 10px 30px
-        rgba(255,79,163,0.40);
-
+      transform: translateY(18px);
+      transition: 0.25s ease;
+      box-shadow: 0 10px 30px rgba(255, 79, 163, 0.40);
     }
-
 
     #topBtn.show {
-
       opacity: 1;
-
       visibility: visible;
-
-      transform:
-        translateY(0);
-
+      transform: translateY(0);
     }
 
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 5000;
+      transform: translate(-50%, 100px);
+      padding: 13px 18px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      opacity: 0;
+      transition: 0.3s ease;
+      box-shadow: var(--shadow);
+    }
 
-    /* =========================================
-       RESPONSIVE
-    ========================================= */
+    #toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
 
     @media (max-width: 900px) {
-
       #menuBtn {
-        display: flex;
+        display: inline-grid;
       }
-
 
       nav {
-
         position: absolute;
-
         top: 88px;
-
         left: 20px;
-
         right: 20px;
-
         display: none;
-
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 0;
-
         padding: 10px;
-
-        border:
-          1px solid var(--border);
-
+        border: 1px solid var(--border);
         border-radius: 18px;
-
-        background:
-          var(--bg-secondary);
-
-        box-shadow:
-          0 20px 50px
-          rgba(0,0,0,0.25);
-
+        background: var(--bg-secondary);
+        box-shadow: var(--shadow);
       }
-
 
       nav.show {
         display: flex;
       }
 
-
       nav a {
-        padding: 15px;
+        padding: 14px;
       }
-
 
       .about-grid {
         grid-template-columns: 1fr;
       }
 
-
       .skills-grid,
-      .projects-grid {
-
-        grid-template-columns:
-          1fr 1fr;
-
+      .projects-grid,
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
-
     }
 
-
     @media (max-width: 620px) {
-
       .navbar {
-        padding: 0 17px;
+        padding: 0 16px;
       }
-
 
       .logo {
-        font-size: 23px;
+        font-size: 22px;
       }
-
 
       .hero h1 {
-        font-size: 48px;
+        font-size: 47px;
+        letter-spacing: -2px;
       }
-
 
       .hero-description {
-        font-size: 17px;
+        font-size: 16px;
       }
-
 
       .typing-box {
-        font-size: 19px;
+        font-size: 18px;
       }
-
-
-      .section-title h2 {
-        font-size: 34px;
-      }
-
 
       .about-info,
       .skills-grid,
       .projects-grid,
       .social-grid {
-
         grid-template-columns: 1fr;
-
       }
-
 
       section {
-
-        padding:
-          80px
-          18px;
-
+        padding: 78px 17px;
       }
 
-
+      .about-box,
       .contact-box,
-      .about-box {
-
-        padding: 27px;
-
+      .modal-box {
+        padding: 26px;
       }
-
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
 
     ::selection {
-
       background: var(--accent);
-
       color: white;
-
     }
-
   </style>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Adil",
+    "url": "https://adil0804.github.io/adil-portfolio/",
+    "sameAs": [
+      "https://github.com/ADIL0804",
+      "https://www.instagram.com/adeb___004/"
+    ],
+    "knowsAbout": ["HTML", "CSS", "JavaScript", "E-commerce", "Artificial Intelligence"]
+  }
+  </script>
 </head>
 
-
 <body>
+  <div id="progressBar" aria-hidden="true"></div>
 
+  <header>
+    <div class="navbar">
+      <button class="logo" id="logoBtn" aria-label="Retour à l'accueil">ADIL.</button>
 
-<div id="progressBar"></div>
+      <div class="nav-right">
+        <nav id="navMenu" aria-label="Navigation principale">
+          <a href="#home">Accueil</a>
+          <a href="#about">À propos</a>
+          <a href="#skills">Compétences</a>
+          <a href="#projects">Projets</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-
-<!-- HEADER -->
-
-<header>
-
-  <div class="navbar">
-
-    <div
-      class="logo"
-      onclick="window.scrollTo({top:0,behavior:'smooth'})"
-    >
-
-      ADIL.
-
+        <button class="icon-btn" id="shareBtn" aria-label="Partager le portfolio" title="Partager">↗</button>
+        <button class="icon-btn" id="themeBtn" aria-label="Changer le thème" title="Changer le thème">☀️</button>
+        <button class="icon-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      </div>
     </div>
-
-
-    <div class="nav-right">
-
-
-      <nav id="navMenu">
-
-        <a href="#home">
-          Accueil
-        </a>
-
-        <a href="#about">
-          À propos
-        </a>
-
-        <a href="#skills">
-          Compétences
-        </a>
-
-        <a href="#projects">
-          Projets
-        </a>
-
-        <a href="#contact">
-          Contact
-        </a>
-
-      </nav>
-
-
-      <button
-        class="icon-btn"
-        id="themeBtn"
-      >
-
-        ☀️
-
-      </button>
-
-
-      <button
-        class="icon-btn"
-        id="menuBtn"
-      >
-
-        ☰
-
-      </button>
-
-    </div>
-
-  </div>
-
-</header>
-
-
-<!-- HERO -->
-
-<section
-  class="hero"
-  id="home"
->
-
-  <div class="hero-content">
-
-
-    <div class="avatar">
-
-      A
-
-    </div>
-
-
-    <div class="mini-title">
-
-   MON PORTFOLIO PERSONNEL
-
-    </div>
-
-
-    <h1>
-
-      Salut, moi c'est
-
-      <span>
-        Adil
-      </span>
-
-      👋
-
-    </h1>
-
-
-    <p class="hero-description">
-
-      J'apprends à créer des expériences digitales,
-      des sites web modernes et des projets en ligne
-      avec HTML, CSS, JavaScript et l'intelligence artificielle.
-
-    </p>
-
-
-    <div class="typing-box">
-
-      Je découvre
-
-      <span id="typing"></span>
-
-    </div>
-
-
-    <div class="hero-buttons">
-
-      <a
-        href="#projects"
-        class="btn btn-primary"
-      >
-
-        Voir mes projets
-
-      </a>
-
-
-      <a
-        href="#contact"
-        class="btn btn-secondary"
-      >
-
-        Me contacter
-
-      </a>
-
-    </div>
-
-
-    <div class="hero-socials">
-
-      <a
-        href="https://wa.me/212613547811?text=Bonjour%20Adil%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio."
-        target="_blank"
-        class="social-mini"
-      >
-
-        💬 WhatsApp
-
-      </a>
-
-
-      <a
-        href="https://www.instagram.com/adeb___004/"
-        target="_blank"
-        class="social-mini"
-      >
-
-        📸 Instagram
-
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ABOUT -->
-
-<section id="about">
-
-  <div class="container">
-
-
-    <div class="section-title reveal">
-
-      <span>
-        QUI SUIS-JE ?
-      </span>
-
-      <h2>
-        À propos de moi
-      </h2>
-
-    </div>
-
-
-    <div class="about-grid">
-
-
-      <div class="about-box glass reveal">
-
-        <h3>
-          Mon parcours
-        </h3>
-
-        <p>
-
-          Je suis en train d'apprendre
-          le développement web étape par étape.
-
-          <br><br>
-
-          Mon objectif est de comprendre
-          comment fonctionnent réellement
-          les sites internet et de pouvoir
-          créer mes propres projets.
-
-          <br><br>
-
-          J'apprends actuellement HTML,
-          CSS, JavaScript,
-          Visual Studio Code
-          et les outils d'intelligence artificielle.
-
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="avatar" aria-label="Initiale Adil">A</div>
+        <div class="mini-title">MON PORTFOLIO PERSONNEL</div>
+
+        <h1>Salut, moi c'est <span>Adil</span> 👋</h1>
+
+        <p class="hero-description">
+          Je construis progressivement mes compétences en développement web, e-commerce,
+          design digital et intelligence artificielle à travers des projets concrets.
         </p>
 
+        <div class="typing-box">Je découvre <span id="typing"></span></div>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+          <a href="#contact" class="btn btn-secondary">Me contacter</a>
+        </div>
+
+        <div class="hero-socials" aria-label="Réseaux sociaux">
+          <a class="social-mini" href="https://wa.me/212613547811?text=Bonjour%20Adil%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio." target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+          <a class="social-mini" href="https://www.instagram.com/adeb___004/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+          <a class="social-mini" href="https://github.com/ADIL0804" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+        </div>
       </div>
+    </section>
 
-
-      <div class="about-info">
-
-
-        <div class="info-card glass reveal">
-
-          <h4>
-            HTML
-          </h4>
-
-          <p>
-            Structure
-          </p>
-
+    <section id="about">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>QUI SUIS-JE ?</span>
+          <h2>À propos de moi</h2>
         </div>
 
+        <div class="about-grid">
+          <article class="about-box glass reveal">
+            <h3>Mon parcours</h3>
+            <p>
+              J'apprends le développement web étape par étape en construisant de vrais projets.
+              Mon objectif est de comprendre comment fonctionnent les sites, améliorer leur design,
+              automatiser certaines tâches et devenir autonome avec les outils numériques.
+              <br><br>
+              Je travaille actuellement avec HTML, CSS, JavaScript, Visual Studio Code, GitHub,
+              l'e-commerce et plusieurs outils d'intelligence artificielle.
+            </p>
+          </article>
 
-        <div class="info-card glass reveal">
-
-          <h4>
-            CSS
-          </h4>
-
-          <p>
-            Design
-          </p>
-
-        </div>
-
-
-        <div class="info-card glass reveal">
-
-          <h4>
-            JS
-          </h4>
-
-          <p>
-            Interaction
-          </p>
-
-        </div>
-
-
-        <div class="info-card glass reveal">
-
-          <h4>
-            AI
-          </h4>
-
-          <p>
-            Création
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SKILLS -->
-
-<section id="skills">
-
-  <div class="container">
-
-
-    <div class="section-title reveal">
-
-      <span>
-        APPRENTISSAGE
-      </span>
-
-      <h2>
-        Mes compétences
-      </h2>
-
-    </div>
-
-
-    <div class="skills-grid">
-
-
-      <div class="skill-card glass reveal">
-
-        <div class="skill-icon">
-          🌐
-        </div>
-
-        <h3>
-          HTML
-        </h3>
-
-        <p>
-
-          Structure des pages,
-          titres, sections,
-          boutons, liens et contenus.
-
-        </p>
-
-
-        <div class="skill-level">
-
-          <div class="skill-bar">
-
-            <div
-              class="skill-fill"
-              data-width="70%"
-            ></div>
-
+          <div class="about-info">
+            <article class="info-card glass reveal"><div><h4>HTML</h4><p>Structure</p></div></article>
+            <article class="info-card glass reveal"><div><h4>CSS</h4><p>Design</p></div></article>
+            <article class="info-card glass reveal"><div><h4>JS</h4><p>Interaction</p></div></article>
+            <article class="info-card glass reveal"><div><h4>GitHub</h4><p>Publication</p></div></article>
           </div>
-
         </div>
-
       </div>
+    </section>
 
-
-      <div class="skill-card glass reveal">
-
-        <div class="skill-icon">
-          🎨
+    <section id="skills">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>APPRENTISSAGE</span>
+          <h2>Mes compétences actuelles</h2>
         </div>
 
-        <h3>
-          CSS
-        </h3>
+        <div class="skills-grid">
+          <article class="skill-card glass reveal">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML</h3>
+            <p>Structure des pages, sections, liens, formulaires et contenu sémantique.</p>
+            <div class="skill-level">
+              <div class="skill-label"><span>Progression</span><span>En cours</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
+            </div>
+          </article>
 
-        <p>
+          <article class="skill-card glass reveal">
+            <div class="skill-icon">🎨</div>
+            <h3>CSS</h3>
+            <p>Responsive design, couleurs, mise en page, effets visuels et animations.</p>
+            <div class="skill-level">
+              <div class="skill-label"><span>Progression</span><span>En cours</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="55%"></div></div>
+            </div>
+          </article>
 
-          Design,
-          responsive,
-          couleurs,
-          animations et mise en page.
-
-        </p>
-
-
-        <div class="skill-level">
-
-          <div class="skill-bar">
-
-            <div
-              class="skill-fill"
-              data-width="55%"
-            ></div>
-
-          </div>
-
+          <article class="skill-card glass reveal">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+            <p>Interactions, menus, thèmes, formulaires et logique côté navigateur.</p>
+            <div class="skill-level">
+              <div class="skill-label"><span>Progression</span><span>En cours</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="35%"></div></div>
+            </div>
+          </article>
         </div>
-
       </div>
+    </section>
 
-
-      <div class="skill-card glass reveal">
-
-        <div class="skill-icon">
-          ⚡
+    <section id="projects">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>MON TRAVAIL</span>
+          <h2>Mes projets</h2>
         </div>
 
-        <h3>
-          JavaScript
-        </h3>
+        <div class="projects-grid">
+          <article class="project glass reveal"
+            tabindex="0"
+            role="button"
+            data-icon="💻"
+            data-title="ADIL Portfolio"
+            data-description="Mon portfolio personnel : responsive, mode sombre et clair, animations, navigation mobile, formulaire WhatsApp, SEO et publication automatique via GitHub Pages."
+            data-tech="HTML • CSS • JavaScript • GitHub Pages"
+            data-live="https://adil0804.github.io/adil-portfolio/"
+            data-source="https://github.com/ADIL0804/adil-portfolio">
+            <div class="project-image">💻</div>
+            <div class="project-content">
+              <h3>ADIL Portfolio</h3>
+              <p>Le site personnel que vous consultez actuellement.</p>
+              <span class="project-link">Voir les détails →</span>
+            </div>
+          </article>
 
-        <p>
+          <article class="project glass reveal"
+            tabindex="0"
+            role="button"
+            data-icon="🛍️"
+            data-title="AD_LUXE"
+            data-description="Projet e-commerce dédié à la mode et aux accessoires, avec catalogue, parcours de commande, SEO, intégrations analytics et optimisation pour le commerce en ligne."
+            data-tech="E-commerce • SEO • GitHub • Web"
+            data-live="https://ad-luxe.ma/"
+            data-source="https://github.com/ADIL0804/AD_LUXE">
+            <div class="project-image">🛍️</div>
+            <div class="project-content">
+              <h3>AD_LUXE</h3>
+              <p>Projet e-commerce avec catalogue, SEO et expérience d'achat.</p>
+              <span class="project-link">Voir les détails →</span>
+            </div>
+          </article>
 
-          Interactions,
-          menus,
-          boutons,
-          animations et logique web.
-
-        </p>
-
-
-        <div class="skill-level">
-
-          <div class="skill-bar">
-
-            <div
-              class="skill-fill"
-              data-width="35%"
-            ></div>
-
-          </div>
-
+          <article class="project glass reveal"
+            tabindex="0"
+            role="button"
+            data-icon="🤖"
+            data-title="Prochains projets"
+            data-description="Je continue à expérimenter avec JavaScript, l'intelligence artificielle, l'automatisation et de nouvelles expériences web."
+            data-tech="JavaScript • IA • Automation"
+            data-live=""
+            data-source="">
+            <div class="project-image">🤖</div>
+            <div class="project-content">
+              <h3>Prochains projets</h3>
+              <p>De nouveaux projets web et IA seront ajoutés ici.</p>
+              <span class="project-link">Voir les détails →</span>
+            </div>
+          </article>
         </div>
-
       </div>
+    </section>
 
+    <section id="contact">
+      <div class="container">
+        <div class="section-title reveal">
+          <span>CONTACT</span>
+          <h2>Parlons ensemble</h2>
+        </div>
 
+        <div class="social-grid">
+          <a class="social-card glass reveal" href="https://wa.me/212613547811?text=Bonjour%20Adil%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio." target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">💬</div><h3>WhatsApp</h3><p>Envoyer un message directement.</p>
+          </a>
+          <a class="social-card glass reveal" href="https://www.instagram.com/adeb___004/" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">📸</div><h3>Instagram</h3><p>@adeb___004</p>
+          </a>
+          <a class="social-card glass reveal" href="https://github.com/ADIL0804" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">💻</div><h3>GitHub</h3><p>Voir mes dépôts et mon code.</p>
+          </a>
+        </div>
+
+        <div class="contact-box glass reveal">
+          <p class="contact-intro">Remplis le formulaire : la conversation WhatsApp s'ouvrira avec le message déjà préparé.</p>
+          <form class="contact-form" id="contactForm">
+            <label for="name">Votre nom</label>
+            <input id="name" type="text" autocomplete="name" placeholder="Exemple : Mohamed" required>
+
+            <label for="email">Votre email</label>
+            <input id="email" type="email" autocomplete="email" placeholder="exemple@email.com" required>
+
+            <label for="message">Votre message</label>
+            <textarea id="message" placeholder="Écrivez votre message..." required></textarea>
+
+            <button type="submit" class="btn btn-primary">💬 Envoyer via WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> <strong>ADIL</strong> — Portfolio
+    <div class="footer-socials">
+      <a href="https://wa.me/212613547811" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="https://www.instagram.com/adeb___004/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://github.com/ADIL0804" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
+  </footer>
 
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button id="closeModal" aria-label="Fermer">×</button>
+      <div id="modalIcon">💻</div>
+      <h2 id="modalTitle">Projet</h2>
+      <p id="modalDescription">Description</p>
+      <div id="modalTech">HTML • CSS</div>
+      <div class="modal-actions">
+        <a class="btn btn-primary" id="modalLive" href="#" target="_blank" rel="noopener noreferrer">Ouvrir le site</a>
+        <a class="btn btn-secondary" id="modalSource" href="#" target="_blank" rel="noopener noreferrer">Voir le code</a>
+      </div>
+    </div>
   </div>
 
-</section>
-
-
-<!-- PROJECTS -->
-
-<section id="projects">
-
-  <div class="container">
-
-
-    <div class="section-title reveal">
-
-      <span>
-        MON TRAVAIL
-      </span>
-
-      <h2>
-        Mes projets
-      </h2>
-
-    </div>
-
-
-    <div class="projects-grid">
-
-
-      <div
-        class="project glass reveal"
-
-        data-icon="💻"
-
-        data-title="Mon Portfolio"
-
-        data-description="Mon premier portfolio personnel avec design responsive, mode sombre et clair, animations, navigation mobile et JavaScript."
-
-        data-tech="HTML • CSS • JavaScript"
-      >
-
-        <div class="project-image">
-          💻
-        </div>
-
-        <div class="project-content">
-
-          <h3>
-            Mon Portfolio
-          </h3>
-
-          <p>
-            Le site que vous regardez actuellement.
-          </p>
-
-          <span class="project-link">
-            Voir les détails →
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="project glass reveal"
-
-        data-icon="🛍️"
-
-        data-title="E-commerce"
-
-        data-description="Un projet de boutique en ligne moderne avec catalogue, produits, panier et expérience d'achat."
-
-        data-tech="E-commerce • UI • Web"
-      >
-
-        <div class="project-image">
-          🛍️
-        </div>
-
-        <div class="project-content">
-
-          <h3>
-            Boutique en ligne
-          </h3>
-
-          <p>
-            Projet e-commerce et vente en ligne.
-          </p>
-
-          <span class="project-link">
-            Voir les détails →
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="project glass reveal"
-
-        data-icon="🤖"
-
-        data-title="Projet AI"
-
-        data-description="Exploration des outils d'intelligence artificielle pour créer du contenu, des designs et automatiser certaines tâches."
-
-        data-tech="AI • Automation • Digital"
-      >
-
-        <div class="project-image">
-          🤖
-        </div>
-
-        <div class="project-content">
-
-          <h3>
-            Intelligence Artificielle
-          </h3>
-
-          <p>
-            Mes futurs projets utilisant l'IA.
-          </p>
-
-          <span class="project-link">
-            Voir les détails →
-          </span>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-  <div class="container">
-
-
-    <div class="section-title reveal">
-
-      <span>
-        CONTACT
-      </span>
-
-      <h2>
-        Parlons ensemble
-      </h2>
-
-    </div>
-
-
-    <div class="social-grid">
-
-
-      <a
-        class="social-card glass reveal"
-        href="https://wa.me/212613547811?text=Bonjour%20Adil%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio."
-        target="_blank"
-      >
-
-        <div class="social-icon">
-          💬
-        </div>
-
-        <h3>
-          WhatsApp
-        </h3>
-
-        <p>
-          Envoyez-moi un message directement.
-        </p>
-
-      </a>
-
-
-      <a
-        class="social-card glass reveal"
-        href="https://www.instagram.com/adeb___004/"
-        target="_blank"
-      >
-
-        <div class="social-icon">
-          📸
-        </div>
-
-        <h3>
-          Instagram
-        </h3>
-
-        <p>
-          @adeb___004
-        </p>
-
-      </a>
-
-
-    </div>
-
-
-    <div class="contact-box glass reveal">
-
-
-      <form
-        class="contact-form"
-        id="contactForm"
-      >
-
-
-        <label for="name">
-          Votre nom
-        </label>
-
-        <input
-          id="name"
-          type="text"
-          placeholder="Exemple : Mohamed"
-          required
-        >
-
-
-        <label for="email">
-          Votre email
-        </label>
-
-        <input
-          id="email"
-          type="email"
-          placeholder="exemple@email.com"
-          required
-        >
-
-
-        <label for="message">
-          Votre message
-        </label>
-
-        <textarea
-          id="message"
-          placeholder="Écrivez votre message..."
-          required
-        ></textarea>
-
-
-        <button
-          type="submit"
-          class="btn btn-primary"
-        >
-
-          💬 Envoyer via WhatsApp
-
-        </button>
-
-
-      </form>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-  ©
-  <span id="year"></span>
-
-  <span>
-    ADIL
-  </span>
-
-  — Portfolio
-
-
-  <div class="footer-socials">
-
-    <a
-      href="https://wa.me/212613547811"
-      target="_blank"
-    >
-      WhatsApp
-    </a>
-
-    <a
-      href="https://www.instagram.com/adeb___004/"
-      target="_blank"
-    >
-      Instagram
-    </a>
-
-  </div>
-
-</footer>
-
-
-<!-- PROJECT POPUP -->
-
-<div
-  class="modal"
-  id="projectModal"
->
-
-  <div class="modal-box">
-
-
-    <button id="closeModal">
-      ×
-    </button>
-
-
-    <div id="modalIcon">
-      💻
-    </div>
-
-
-    <h2 id="modalTitle">
-      Projet
-    </h2>
-
-
-    <p id="modalDescription">
-      Description
-    </p>
-
-
-    <div id="modalTech">
-      HTML • CSS
-    </div>
-
-
-  </div>
-
-</div>
-
-
-<button
-  id="topBtn"
-  title="Retour en haut"
->
-  ↑
-</button>
-
-
-<script>
-
-  /* =========================================
-     ELEMENTS
-  ========================================= */
-
-  const menuBtn =
-    document.getElementById("menuBtn");
-
-  const navMenu =
-    document.getElementById("navMenu");
-
-  const themeBtn =
-    document.getElementById("themeBtn");
-
-  const topBtn =
-    document.getElementById("topBtn");
-
-  const progressBar =
-    document.getElementById("progressBar");
-
-
-  /* =========================================
-     MOBILE MENU
-  ========================================= */
-
-  menuBtn.addEventListener(
-    "click",
-    function () {
-
+  <button id="topBtn" aria-label="Retour en haut" title="Retour en haut">↑</button>
+  <div id="toast" role="status" aria-live="polite">Lien copié ✅</div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+    const themeBtn = document.getElementById("themeBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const logoBtn = document.getElementById("logoBtn");
+    const topBtn = document.getElementById("topBtn");
+    const progressBar = document.getElementById("progressBar");
+    const toast = document.getElementById("toast");
+
+    logoBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    menuBtn.addEventListener("click", () => {
       navMenu.classList.toggle("show");
+      const open = navMenu.classList.contains("show");
+      menuBtn.textContent = open ? "✕" : "☰";
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
 
-
-      if (
-        navMenu.classList.contains("show")
-      ) {
-
-        menuBtn.textContent = "✕";
-
-      } else {
-
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener("click", event => {
+        const href = link.getAttribute("href");
+        const target = href && document.querySelector(href);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+        navMenu.classList.remove("show");
         menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
 
-      }
-
+    const savedTheme = localStorage.getItem("adil-theme");
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+      themeBtn.textContent = "🌙";
     }
-  );
 
+    themeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const light = document.body.classList.contains("light");
+      themeBtn.textContent = light ? "🌙" : "☀️";
+      localStorage.setItem("adil-theme", light ? "light" : "dark");
+    });
 
-  /* =========================================
-     SMOOTH SCROLL
-  ========================================= */
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
 
-  const navLinks =
-    document.querySelectorAll(
-      'a[href^="#"]'
-    );
+    shareBtn.addEventListener("click", async () => {
+      const data = {
+        title: "ADIL | Portfolio",
+        text: "Découvre mon portfolio personnel.",
+        url: window.location.href
+      };
 
-
-  navLinks.forEach(
-    function(link) {
-
-      link.addEventListener(
-        "click",
-        function(event) {
-
-          const href =
-            this.getAttribute("href");
-
-
-          if (
-            href &&
-            href.startsWith("#")
-          ) {
-
-            event.preventDefault();
-
-
-            const target =
-              document.querySelector(href);
-
-
-            if (target) {
-
-              target.scrollIntoView({
-                behavior: "smooth"
-              });
-
-            }
-
-          }
-
-
-          navMenu.classList.remove("show");
-
-          menuBtn.textContent = "☰";
-
+      try {
+        if (navigator.share) {
+          await navigator.share(data);
+        } else {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast("Lien copié ✅");
         }
-      );
+      } catch (error) {
+        if (error.name !== "AbortError") showToast("Partage indisponible");
+      }
+    });
 
-    }
-  );
+    const words = ["le Web 💻", "le Design 🎨", "l'E-commerce 🛍️", "JavaScript ⚡", "l'IA 🤖"];
+    let wordIndex = 0;
+    let letterIndex = 0;
+    let deleting = false;
+    const typing = document.getElementById("typing");
 
+    function typingAnimation() {
+      const word = words[wordIndex];
 
-  /* =========================================
-     DARK / LIGHT MODE
-  ========================================= */
-
-  const savedTheme =
-    localStorage.getItem(
-      "adil-theme"
-    );
-
-
-  if (
-    savedTheme === "light"
-  ) {
-
-    document.body.classList.add(
-      "light"
-    );
-
-    themeBtn.textContent = "🌙";
-
-  }
-
-
-  themeBtn.addEventListener(
-    "click",
-    function () {
-
-      document.body.classList.toggle(
-        "light"
-      );
-
-
-      if (
-        document.body.classList.contains(
-          "light"
-        )
-      ) {
-
-        themeBtn.textContent = "🌙";
-
-        localStorage.setItem(
-          "adil-theme",
-          "light"
-        );
-
+      if (!deleting) {
+        typing.textContent = word.substring(0, letterIndex + 1);
+        letterIndex++;
+        if (letterIndex === word.length) {
+          deleting = true;
+          setTimeout(typingAnimation, 1100);
+          return;
+        }
       } else {
-
-        themeBtn.textContent = "☀️";
-
-        localStorage.setItem(
-          "adil-theme",
-          "dark"
-        );
-
-      }
-
-    }
-  );
-
-
-  /* =========================================
-     TYPING
-  ========================================= */
-
-  const words = [
-
-    "le Web 💻",
-
-    "le Design 🎨",
-
-    "l'E-commerce 🛍️",
-
-    "JavaScript ⚡",
-
-    "l'IA 🤖"
-
-  ];
-
-
-  let wordIndex = 0;
-
-  let letterIndex = 0;
-
-  let deleting = false;
-
-
-  const typing =
-    document.getElementById(
-      "typing"
-    );
-
-
-  function typingAnimation() {
-
-    const word =
-      words[wordIndex];
-
-
-    if (!deleting) {
-
-      typing.textContent =
-        word.substring(
-          0,
-          letterIndex + 1
-        );
-
-      letterIndex++;
-
-
-      if (
-        letterIndex ===
-        word.length
-      ) {
-
-        deleting = true;
-
-        setTimeout(
-          typingAnimation,
-          1200
-        );
-
-        return;
-
-      }
-
-    } else {
-
-      typing.textContent =
-        word.substring(
-          0,
-          letterIndex - 1
-        );
-
-      letterIndex--;
-
-
-      if (
-        letterIndex === 0
-      ) {
-
-        deleting = false;
-
-        wordIndex++;
-
-
-        if (
-          wordIndex ===
-          words.length
-        ) {
-
-          wordIndex = 0;
-
+        typing.textContent = word.substring(0, letterIndex - 1);
+        letterIndex--;
+        if (letterIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
         }
-
       }
 
+      setTimeout(typingAnimation, deleting ? 45 : 85);
     }
 
-
-    setTimeout(
-
-      typingAnimation,
-
-      deleting
-        ? 45
-        : 85
-
-    );
-
-  }
-
-
-  typingAnimation();
-
-
-  /* =========================================
-     REVEAL
-  ========================================= */
-
-  const revealElements =
-    document.querySelectorAll(
-      ".reveal"
-    );
-
-
-  const revealObserver =
-    new IntersectionObserver(
-
-      function(entries) {
-
-        entries.forEach(
-          function(entry) {
-
-            if (
-              entry.isIntersecting
-            ) {
-
-              entry.target
-                .classList
-                .add("show");
-
-            }
-
-          }
-        );
-
-      },
-
-      {
-        threshold: 0.12
-      }
-
-    );
-
-
-  revealElements.forEach(
-    function(element) {
-
-      revealObserver.observe(
-        element
-      );
-
-    }
-  );
-
-
-  /* =========================================
-     SKILLS
-  ========================================= */
-
-  const skillFills =
-    document.querySelectorAll(
-      ".skill-fill"
-    );
-
-
-  const skillObserver =
-    new IntersectionObserver(
-
-      function(entries) {
-
-        entries.forEach(
-          function(entry) {
-
-            if (
-              entry.isIntersecting
-            ) {
-
-              entry.target.style.width =
-                entry.target.dataset.width;
-
-            }
-
-          }
-        );
-
-      },
-
-      {
-        threshold: 0.5
-      }
-
-    );
-
-
-  skillFills.forEach(
-    function(fill) {
-
-      skillObserver.observe(
-        fill
-      );
-
-    }
-  );
-
-
-  /* =========================================
-     ACTIVE MENU
-  ========================================= */
-
-  const sections =
-    document.querySelectorAll(
-      "section[id]"
-    );
-
-
-  const menuLinks =
-    document.querySelectorAll(
-      "nav a"
-    );
-
-
-  function activeMenu() {
-
-    let current = "";
-
-
-    sections.forEach(
-      function(section) {
-
-        const top =
-          section.offsetTop - 180;
-
-
-        if (
-          window.scrollY >= top
-        ) {
-
-          current =
-            section.getAttribute(
-              "id"
-            );
-
-        }
-
-      }
-    );
-
-
-    menuLinks.forEach(
-      function(link) {
-
-        link.classList.remove(
-          "active"
-        );
-
-
-        if (
-          link.getAttribute("href")
-          ===
-          "#" + current
-        ) {
-
-          link.classList.add(
-            "active"
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-
-  /* =========================================
-     SCROLL
-  ========================================= */
-
-  window.addEventListener(
-    "scroll",
-    function () {
-
-      activeMenu();
-
-
-      const scrollTop =
-        document.documentElement.scrollTop;
-
-
-      const height =
-
-        document.documentElement.scrollHeight
-
-        -
-
-        document.documentElement.clientHeight;
-
-
-      const progress =
-
-        height > 0
-
-        ? (scrollTop / height) * 100
-
-        : 0;
-
-
-      progressBar.style.width =
-        progress + "%";
-
-
-      if (
-        window.scrollY > 500
-      ) {
-
-        topBtn.classList.add(
-          "show"
-        );
-
-      } else {
-
-        topBtn.classList.remove(
-          "show"
-        );
-
-      }
-
-    }
-  );
-
-
-  topBtn.addEventListener(
-    "click",
-    function () {
-
-      window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
+    typingAnimation();
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.style.width = entry.target.dataset.width;
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll(".skill-fill").forEach(fill => skillObserver.observe(fill));
+
+    const sections = document.querySelectorAll("section[id]");
+    const menuLinks = document.querySelectorAll("nav a");
+
+    function activeMenu() {
+      let current = "home";
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 180) current = section.id;
       });
 
+      menuLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+      });
     }
-  );
 
+    window.addEventListener("scroll", () => {
+      activeMenu();
 
-  /* =========================================
-     PROJECT POPUP
-  ========================================= */
+      const scrollTop = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      progressBar.style.width = `${height > 0 ? (scrollTop / height) * 100 : 0}%`;
+      topBtn.classList.toggle("show", window.scrollY > 500);
+    }, { passive: true });
 
-  const projects =
-    document.querySelectorAll(
-      ".project"
-    );
+    topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
+    const projectModal = document.getElementById("projectModal");
+    const closeModal = document.getElementById("closeModal");
+    const modalIcon = document.getElementById("modalIcon");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalTech = document.getElementById("modalTech");
+    const modalLive = document.getElementById("modalLive");
+    const modalSource = document.getElementById("modalSource");
 
-  const projectModal =
-    document.getElementById(
-      "projectModal"
-    );
+    function openProject(project) {
+      modalIcon.textContent = project.dataset.icon;
+      modalTitle.textContent = project.dataset.title;
+      modalDescription.textContent = project.dataset.description;
+      modalTech.textContent = project.dataset.tech;
 
+      const live = project.dataset.live;
+      const source = project.dataset.source;
 
-  const closeModal =
-    document.getElementById(
-      "closeModal"
-    );
+      modalLive.hidden = !live;
+      modalSource.hidden = !source;
+      if (live) modalLive.href = live;
+      if (source) modalSource.href = source;
 
+      projectModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+      closeModal.focus();
+    }
 
-  const modalIcon =
-    document.getElementById(
-      "modalIcon"
-    );
-
-
-  const modalTitle =
-    document.getElementById(
-      "modalTitle"
-    );
-
-
-  const modalDescription =
-    document.getElementById(
-      "modalDescription"
-    );
-
-
-  const modalTech =
-    document.getElementById(
-      "modalTech"
-    );
-
-
-  projects.forEach(
-    function(project) {
-
-      project.addEventListener(
-        "click",
-        function () {
-
-          modalIcon.textContent =
-            this.dataset.icon;
-
-          modalTitle.textContent =
-            this.dataset.title;
-
-          modalDescription.textContent =
-            this.dataset.description;
-
-          modalTech.textContent =
-            this.dataset.tech;
-
-
-          projectModal.classList.add(
-            "show"
-          );
-
-
-          document.body.style.overflow =
-            "hidden";
-
+    document.querySelectorAll(".project").forEach(project => {
+      project.addEventListener("click", () => openProject(project));
+      project.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openProject(project);
         }
-      );
+      });
+    });
 
+    function hideModal() {
+      projectModal.classList.remove("show");
+      document.body.style.overflow = "";
     }
-  );
 
+    closeModal.addEventListener("click", hideModal);
+    projectModal.addEventListener("click", event => {
+      if (event.target === projectModal) hideModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") hideModal();
+    });
 
-  function hideModal() {
-
-    projectModal.classList.remove(
-      "show"
-    );
-
-    document.body.style.overflow =
-      "";
-
-  }
-
-
-  closeModal.addEventListener(
-    "click",
-    hideModal
-  );
-
-
-  projectModal.addEventListener(
-    "click",
-    function(event) {
-
-      if (
-        event.target ===
-        projectModal
-      ) {
-
-        hideModal();
-
-      }
-
-    }
-  );
-
-
-  document.addEventListener(
-    "keydown",
-    function(event) {
-
-      if (
-        event.key === "Escape"
-      ) {
-
-        hideModal();
-
-      }
-
-    }
-  );
-
-
-  /* =========================================
-     CONTACT FORM -> WHATSAPP
-  ========================================= */
-
-  const contactForm =
-    document.getElementById(
-      "contactForm"
-    );
-
-
-  contactForm.addEventListener(
-    "submit",
-    function(event) {
-
+    document.getElementById("contactForm").addEventListener("submit", event => {
       event.preventDefault();
 
-
-      const name =
-        document.getElementById(
-          "name"
-        ).value.trim();
-
-
-      const email =
-        document.getElementById(
-          "email"
-        ).value.trim();
-
-
-      const message =
-        document.getElementById(
-          "message"
-        ).value.trim();
-
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
 
       const whatsappMessage =
+        `Bonjour Adil 👋\n\nJe vous contacte depuis votre portfolio.\n\nNom : ${name}\nEmail : ${email}\n\nMessage :\n${message}`;
 
-        "Bonjour Adil 👋\n\n"
+      const whatsappURL = `https://wa.me/212613547811?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    });
 
-        +
-
-        "Je vous contacte depuis votre portfolio.\n\n"
-
-        +
-
-        "Nom : "
-        + name
-        + "\n"
-
-        +
-
-        "Email : "
-        + email
-        + "\n\n"
-
-        +
-
-        "Message :\n"
-        + message;
-
-
-      const encodedMessage =
-        encodeURIComponent(
-          whatsappMessage
-        );
-
-
-      const whatsappURL =
-
-        "https://wa.me/212613547811?text="
-
-        +
-
-        encodedMessage;
-
-
-      window.open(
-        whatsappURL,
-        "_blank"
-      );
-
-    }
-  );
-
-
-  /* =========================================
-     YEAR
-  ========================================= */
-
-  document.getElementById(
-    "year"
-  ).textContent =
-    new Date().getFullYear();
-
-
-  activeMenu();
-
-</script>
-
-
+    document.getElementById("year").textContent = new Date().getFullYear();
+    activeMenu();
+  </script>
 </body>
-
 </html>

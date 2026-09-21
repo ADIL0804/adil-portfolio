@@ -100,7 +100,6 @@
       <div class="row socials" aria-label="Réseaux sociaux">
         <a class="pill" href="https://wa.me/212613547811?text=Bonjour%20Adil%2C%20je%20vous%20contacte%20depuis%20votre%20portfolio." target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
         <a class="pill" href="https://www.instagram.com/adeb___004/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
-        <a class="pill" href="https://github.com/ADIL0804" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
       </div>
     </div>
   </section>
@@ -149,7 +148,7 @@
 </main>
 
 <footer>© <span id="year"></span> <strong>ADIL</strong> — Portfolio
-  <div class="footer-links"><a href="cv.html">CV</a><a href="https://wa.me/212613547811" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.instagram.com/adeb___004/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://github.com/ADIL0804" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+  <div class="footer-links"><a href="cv.html">CV</a><a href="https://wa.me/212613547811" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.instagram.com/adeb___004/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
 </footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -176,7 +175,15 @@ const modal=document.getElementById('modal'),close=document.getElementById('clos
 function openProject(p){mi.textContent=p.dataset.icon;mt.textContent=p.dataset.title;md.textContent=p.dataset.description;mtech.textContent=p.dataset.tech;ml.hidden=!p.dataset.live;ms.hidden=!p.dataset.source;if(p.dataset.live)ml.href=p.dataset.live;if(p.dataset.source)ms.href=p.dataset.source;modal.classList.add('show');document.body.style.overflow='hidden'}
 document.querySelectorAll('.project').forEach(p=>{p.onclick=()=>openProject(p);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject(p)}}});
 function hideModal(){modal.classList.remove('show');document.body.style.overflow=''}close.onclick=hideModal;modal.onclick=e=>e.target===modal&&hideModal();document.onkeydown=e=>e.key==='Escape'&&hideModal();
-document.getElementById('contactForm').onsubmit=e=>{e.preventDefault();const n=document.getElementById('name').value.trim(),em=document.getElementById('email').value.trim(),m=document.getElementById('message').value.trim(),txt=`Bonjour Adil 👋\n\nJe vous contacte depuis votre portfolio.\n\nNom : ${n}\nEmail : ${em}\n\nMessage :\n${m}`;window.open(`https://wa.me/212613547811?text=${encodeURIComponent(txt)}`,'_blank','noopener,noreferrer')};
+document.getElementById('contactForm').onsubmit=e=>{e.preventDefault();const n=document.getElementById('name').value.trim(),em=document.getElementById('email').value.trim(),m=document.getElementById('message').value.trim(),txt=`Bonjour Adil 👋
+
+Je vous contacte depuis votre portfolio.
+
+Nom : ${n}
+Email : ${em}
+
+Message :
+${m}`;window.open(`https://wa.me/212613547811?text=${encodeURIComponent(txt)}`,'_blank','noopener,noreferrer')};
 document.getElementById('year').textContent=new Date().getFullYear();active();
 </script>
 </body>
